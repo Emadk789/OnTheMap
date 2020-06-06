@@ -103,29 +103,29 @@ extension MapViewController: NavigationBarDelegate {
     }
     
     func navigationBarPlusButtonClicked() {
-        let vc = storyboard?.instantiateViewController(identifier: "addLocationIdentifier") as! AddLocationViewController;
+        let viewController = storyboard?.instantiateViewController(identifier: "addLocationIdentifier") as! AddLocationViewController;
         
-        present(vc, animated: true, completion: nil);
-        vc.onDone = handelAddLocationDismission(success:userLocation:);
+        present(viewController, animated: true, completion: nil);
+        viewController.onDone = handelAddLocationDismission(success:userLocation:);
         
     }
     
     func navigationBarLogOutButtonClicked() {
         UdacityClient.deleteSession{ (success, error) in
-            let vc = self.storyboard?.instantiateViewController(identifier: "logInViewController") as! LoginViewController;
-            vc.modalPresentationStyle = .fullScreen;
-            self.present(vc, animated: true, completion: nil);
+            let viewController = self.storyboard?.instantiateViewController(identifier: "logInViewController") as! LoginViewController;
+            viewController.modalPresentationStyle = .fullScreen;
+            self.present(viewController, animated: true, completion: nil);
         };
     }
     
     func handelAddLocationDismission(success: Bool, userLocation: StudentLocation?) {
         if success {
-            let vc2 = self.storyboard?.instantiateViewController(identifier: "mapViewIdentifier") as! ConfirmAddLocationViewController;
-            vc2.location = userLocation!;
+            let viewController = self.storyboard?.instantiateViewController(identifier: "mapViewIdentifier") as! ConfirmAddLocationViewController;
+            viewController.location = userLocation!;
             print("Befor presention!!");
             print(userLocation!);
-            self.present(vc2, animated: true);
-            vc2.onDone = handelConfirmAddLocationDismission;
+            self.present(viewController, animated: true);
+            viewController.onDone = handelConfirmAddLocationDismission;
         }
     }
     func handelConfirmAddLocationDismission(){

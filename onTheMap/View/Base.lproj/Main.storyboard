@@ -15,8 +15,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="J4v-Uf-XR2">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                            </activityIndicatorView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="OAE-S6-MfW">
-                                <rect key="frame" x="0.0" y="10" width="375" height="357"/>
+                                <rect key="frame" x="0.0" y="10" width="375" height="397"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" verticalHuggingPriority="251" image="udacity-logo" translatesAutoresizingMaskIntoConstraints="NO" id="Dqq-UK-Drh">
                                         <rect key="frame" x="112.5" y="0.0" width="150" height="75"/>
@@ -26,7 +29,7 @@
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="mL8-Ow-zKZ">
-                                        <rect key="frame" x="70" y="130" width="235" height="142"/>
+                                        <rect key="frame" x="70" y="150" width="235" height="142"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VNV-RT-Uw3">
                                                 <rect key="frame" x="0.0" y="0.0" width="235" height="42"/>
@@ -52,7 +55,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="uwa-rj-YWV">
-                                        <rect key="frame" x="69" y="327" width="237.5" height="30"/>
+                                        <rect key="frame" x="69" y="367" width="237.5" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Don't have an account? " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Jh-AW-DCm">
                                                 <rect key="frame" x="0.0" y="5" width="183.5" height="20.5"/>
@@ -78,14 +81,19 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="J4v-Uf-XR2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="169" id="511-1x-PbY"/>
                             <constraint firstAttribute="trailing" secondItem="OAE-S6-MfW" secondAttribute="trailing" id="BBE-aI-06A"/>
-                            <constraint firstAttribute="bottom" secondItem="OAE-S6-MfW" secondAttribute="bottom" constant="300" id="HRD-4V-mYZ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="J4v-Uf-XR2" secondAttribute="trailing" constant="169" id="DWx-PK-zh4"/>
+                            <constraint firstAttribute="bottom" secondItem="OAE-S6-MfW" secondAttribute="bottom" constant="260" id="HRD-4V-mYZ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="J4v-Uf-XR2" secondAttribute="bottom" constant="315" id="Yp0-wf-YYq"/>
                             <constraint firstItem="OAE-S6-MfW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="ZIi-fd-F6y"/>
                             <constraint firstItem="OAE-S6-MfW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="nyS-VT-JPp"/>
+                            <constraint firstItem="J4v-Uf-XR2" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="315" id="pgH-ag-fs6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="J4v-Uf-XR2" id="uY2-Il-gTo"/>
                         <outlet property="emailTextField" destination="VNV-RT-Uw3" id="U3g-78-lG8"/>
                         <outlet property="passwordTextField" destination="3tE-yI-lKl" id="pzZ-DR-fOI"/>
                         <segue destination="iQV-5f-Xzj" kind="show" identifier="goToTabViewController" id="qe9-fa-VYz"/>
@@ -293,13 +301,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="37" translatesAutoresizingMaskIntoConstraints="NO" id="ogW-Xa-O1j">
-                                <rect key="frame" x="20" y="54" width="335" height="222"/>
+                                <rect key="frame" x="20" y="54" width="335" height="267"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_world" translatesAutoresizingMaskIntoConstraints="NO" id="axW-Zt-hqF">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="67"/>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ot4-81-WkE">
-                                        <rect key="frame" x="0.0" y="104" width="335" height="118"/>
+                                        <rect key="frame" x="0.0" y="104" width="335" height="163"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mQq-Nq-yNO">
                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="34"/>
@@ -321,6 +329,10 @@
                                                     <action selector="findLocationButtonClicked:" destination="SMr-Jc-wn9" eventType="touchUpInside" id="yeC-xI-PTb"/>
                                                 </connections>
                                             </button>
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Cs5-6I-nNH">
+                                                <rect key="frame" x="0.0" y="126" width="335" height="37"/>
+                                                <color key="color" cocoaTouchSystemColor="darkTextColor"/>
+                                            </activityIndicatorView>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -351,6 +363,7 @@
                         <barButtonItem key="leftBarButtonItem" title="CANCEL" id="XkK-HQ-GSU"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicatior" destination="Cs5-6I-nNH" id="4bE-al-yiB"/>
                         <outlet property="nameTextField" destination="mQq-Nq-yNO" id="9CZ-r6-T2C"/>
                         <outlet property="urlTextField" destination="qhZ-xK-Afm" id="p0n-qV-pla"/>
                     </connections>

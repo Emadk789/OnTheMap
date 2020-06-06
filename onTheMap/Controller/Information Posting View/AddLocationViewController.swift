@@ -15,6 +15,7 @@ class AddLocationViewController: UIViewController {
     @IBOutlet weak var urlTextField: UITextField!
     
     var userLocation: StudentLocation? = nil;
+    @IBOutlet weak var activityIndicatior: UIActivityIndicatorView!
     
     var onDone: ((Bool, StudentLocation?) -> Void)?
     
@@ -40,7 +41,7 @@ class AddLocationViewController: UIViewController {
                     self.showLoginFailure(message: error);
                     return;
                 }
-                // I am just filling the first name to be the city name, because I could not retrieve the student public information using https://onthemap-api.udacity.com/v1/users/<userId>
+
                 self.userLocation = StudentLocation(createdAt: "", firstName: fullLocationName!, lastName: "", latitude: location.coordinate.latitude as Double, longitude: location.coordinate.longitude as Double, mapString: fullLocationName!, mediaURL: self.urlTextField.text ?? "", objectId: "", uniqueKey: "", updatedAt: "");
                 
                 Locations.studentLocations.append(self.userLocation!);
@@ -72,28 +73,32 @@ extension AddLocationViewController {
                      completion: @escaping(String?, CLLocation?) -> Void) {
         
         let geocoder = CLGeocoder()
+        self.activityIndicatior.isHidden = false;
+        self.activityIndicatior.startAnimating();
         geocoder.geocodeAddressString(name) { placemarks, error in
             
             guard error == nil else {
                 print("*** Error in \(#function): \(error!.localizedDescription)")
+                self.activityIndicatior.stopAnimating();
                 completion(nil, nil)
                 return
             }
             
             guard let placemark = placemarks?[0] else {
                 print("*** Error in \(#function): placemark is nil")
+                self.activityIndicatior.stopAnimating();
                 completion(nil, nil)
                 return
             }
             
             guard let location = placemark.location else {
                 print("*** Error in \(#function): placemark is nil")
+                self.activityIndicatior.stopAnimating();
                 completion(nil, nil)
                 return
             }
-            print("This is the placemark \(placemark.name) and \(placemark.country)");
             let fullLocationName = placemark.name! + ", " + placemark.country!;
-            
+            self.activityIndicatior.stopAnimating();
             completion(fullLocationName, location)
         }
     }

@@ -28,9 +28,6 @@ class TableViewController: UITableViewController {
     
     
     // MARK: - TableView Functions
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1;
-    }
     
     // MARK: numberOfRowsInSection
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

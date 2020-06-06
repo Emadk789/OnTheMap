@@ -11,13 +11,16 @@ import UIKit
 class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UdacityClient.getStudentLocations(urlFormat: .order) { (success, error) in }
+        UdacityClient.getStudentLocations(urlFormat: .limitAndOrder(100)) { (success, error) in }
     }
 
     @IBAction func loginButtonClicked(_ sender: Any) {
+        activityIndicator.isHidden = false;
+        activityIndicator.startAnimating();
         UdacityClient.validateUser(email: emailTextField.text ?? "", password: passwordTextField.text ?? "", completion: handelLoginResponse(success:error:))
     }
     @IBAction func signUpButtonClicked(_ sender: Any) {
@@ -25,6 +28,7 @@ class LoginViewController: UIViewController {
     }
     
     func handelLoginResponse(success: Bool, error: Error?){
+        activityIndicator.stopAnimating();
         if success {
             performSegue(withIdentifier: "goToTabViewController", sender: nil);
         } else {

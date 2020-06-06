@@ -18,16 +18,11 @@ class UdacityClient {
         static let base: String = "https://onthemap-api.udacity.com/v1/";
         
         case session
-//        case deleteSession
-        
         
         var stringValue: String {
             switch self {
             case .session:
                 return EndPoints.base + "session";
-//            case .deleteSession:
-//                return EndPoints.base + "session"
-                
             }
         }
         enum GetLocations {
@@ -37,6 +32,7 @@ class UdacityClient {
             case limitAndSkip(Int, Int);
             case order;
             case uniqueKey(Int);
+            case limitAndOrder(Int);
             
             var stringValue: String {
                 switch self {
@@ -48,6 +44,8 @@ class UdacityClient {
                     return EndPoints.base + GetLocations.base + "?order=-updatedAt";
                 case .uniqueKey(let uniqueKey):
                     return EndPoints.base + GetLocations.base + "?uniqueKey=\(uniqueKey)";
+                case let .limitAndOrder(limit):
+                    return EndPoints.base + GetLocations.base + "?limit=\(limit)" + "&order=-updatedAt";
                 }
             }
             var url: URL {
@@ -76,7 +74,6 @@ class UdacityClient {
                     completion(responseObject, nil)
                 }
             } catch {
-                print("First error\(error)");
                 do {
                     
                     let errorResponse = try decoder.decode(ErrorResponse.self, from: data) as Error
@@ -84,7 +81,6 @@ class UdacityClient {
                         completion(nil, errorResponse)
                     }
                 } catch {
-                    print("Second error\(error)");
                     DispatchQueue.main.async {
                         completion(nil, error)
                     }
@@ -136,7 +132,6 @@ class UdacityClient {
                 completion(false, error);
                 return;
             }
-            print(response);
             completion(true, nil);
         }
     }
@@ -151,8 +146,9 @@ class UdacityClient {
             url = UdacityClient.EndPoints.GetLocations.order.url;
         case .uniqueKey(let uniqueKey):
             url = UdacityClient.EndPoints.GetLocations.uniqueKey(uniqueKey).url;
+        case let .limitAndOrder(limit):
+            url = UdacityClient.EndPoints.GetLocations.limitAndOrder(limit).url;
         }
-        print(url);
         taskForGETRequest(url: url, responseType: GetStudentLocationResponse.self) { (response, error) in
             guard let response = response else {
                 completion(false, error);
@@ -186,7 +182,6 @@ class UdacityClient {
             let encoder = JSONEncoder()
             do {
                 let response = try encoder.encode(newData);
-                print("Delete response \(response)");
                 DispatchQueue.main.async {
                 completion(true, nil);
                 }
@@ -203,7 +198,6 @@ class UdacityClient {
                     }
                 }
             }
-//          print(String(data: newData!, encoding: .utf8)!)
         }
         task.resume()
     }
@@ -218,7 +212,6 @@ class UdacityClient {
     static func postStudentLocation(studentLocation: StudentLocation, completion: @escaping (Bool, Error?) -> Void){
         taskForPOSTRequest(url: URL(string: EndPoints.base + EndPoints.GetLocations.base)!, responseType: PostStudentLocationResponse.self, body: studentLocation, dataLogic: taskForPostRequestWithoutSubdata(data:)) { (response, error) in
             guard let response = response else {
-                print("There is an error \(error!)");
                 completion(false, error);
                 return;
             }
