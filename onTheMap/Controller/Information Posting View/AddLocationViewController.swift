@@ -40,7 +40,7 @@ class AddLocationViewController: UIViewController {
                     self.showLoginFailure(message: error);
                     return;
                 }
-                // I am just filling the first name to be the city name, because I could not retrive the student public infomation using https://onthemap-api.udacity.com/v1/users/<userId>
+                // I am just filling the first name to be the city name, because I could not retrieve the student public information using https://onthemap-api.udacity.com/v1/users/<userId>
                 self.userLocation = StudentLocation(createdAt: "", firstName: fullLocationName!, lastName: "", latitude: location.coordinate.latitude as Double, longitude: location.coordinate.longitude as Double, mapString: fullLocationName!, mediaURL: self.urlTextField.text ?? "", objectId: "", uniqueKey: "", updatedAt: "");
                 
                 Locations.studentLocations.append(self.userLocation!);
