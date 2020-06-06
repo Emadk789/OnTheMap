@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		691D1AB9248BEAD100445C5B /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691D1AB8248BEAD100445C5B /* UIViewController+Extension.swift */; };
 		6959D3C524836E440033B7FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6959D3C424836E440033B7FE /* AppDelegate.swift */; };
 		6959D3C724836E440033B7FE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6959D3C624836E440033B7FE /* SceneDelegate.swift */; };
 		6959D3C924836E440033B7FE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6959D3C824836E440033B7FE /* LoginViewController.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		691D1AB8248BEAD100445C5B /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		6959D3C124836E440033B7FE /* onTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = onTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6959D3C424836E440033B7FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6959D3C624836E440033B7FE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 			children = (
 				6959D3C424836E440033B7FE /* AppDelegate.swift */,
 				6959D3C624836E440033B7FE /* SceneDelegate.swift */,
+				691D1AB8248BEAD100445C5B /* UIViewController+Extension.swift */,
 				6959D3F9248A59820033B7FE /* Login View */,
 				6959D3FA248A59EE0033B7FE /* Map and Table Tabbed View */,
 				6959D3FB248A5A080033B7FE /* Information Posting View */,
@@ -261,6 +264,7 @@
 				6959D3DD24837A4A0033B7FE /* UdacityClient.swift in Sources */,
 				6959D3C924836E440033B7FE /* LoginViewController.swift in Sources */,
 				6959D3F8248A29DE0033B7FE /* PostStudentLocationResponse.swift in Sources */,
+				691D1AB9248BEAD100445C5B /* UIViewController+Extension.swift in Sources */,
 				6959D3F424875B3E0033B7FE /* AddLocationViewController.swift in Sources */,
 				6959D3C524836E440033B7FE /* AppDelegate.swift in Sources */,
 				6959D3C724836E440033B7FE /* SceneDelegate.swift in Sources */,

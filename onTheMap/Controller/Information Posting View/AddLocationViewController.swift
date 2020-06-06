@@ -31,14 +31,14 @@ class AddLocationViewController: UIViewController {
     func findLocation(){
         if urlTextField.text == "" || nameTextField.text == "" {
             let error: String = "You must both location and url";
-            showLoginFailure(message: error);
+            showFailureAlert(message: error);
             return;
         }
         else {
             getLocation(forPlaceCalled: nameTextField.text ?? "") { (fullLocationName, location) in
                 guard let location = location else {
                     let error: String = "The location that you are looking for does not exist! sorry";
-                    self.showLoginFailure(message: error);
+                    self.showFailureAlert(message: error);
                     return;
                 }
 
@@ -58,11 +58,6 @@ class AddLocationViewController: UIViewController {
             let vc = segue.destination as! ConfirmAddLocationViewController;
             vc.location = userLocation!;
         }
-    }
-    func showLoginFailure(message: String) {
-        let alertVC = UIAlertController(title: "Login Failed", message: message, preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        show(alertVC, sender: nil)
     }
 }
 // MARK: - Get Location
